@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>SendIT Logistics</title>
+    <link rel="stylesheet" href="./css/normalize.css" />
+    <link rel="stylesheet" href="./css/main.css" />
+  </head>
+  <body>
+    <div class="home-container">
+
+      <div class="main">
+        <form class="main__login-form">
+          <div class="page-title">Register</div>
+          <div class="text-group">
+            <label for="firstname">First Name</label>
+            <input type="text" name="firstname" id="firstname" />
+          </div>
+
+          <div class="text-group">
+            <label for="lastname">Last Name</label>
+            <input type="text" name="lastname" id="lastname" />
+          </div>
+
+          <div class="text-group">
+            <label for="othernames">Other Names</label>
+            <input type="text" name="othernames" id="othernames" />
+          </div>
+
+          <div class="text-group">
+            <label for="email">Email</label>
+            <input type="text" name="email" id="email" />
+          </div>
+
+          <div class="text-group">
+            <label for="username">Choose a username</label>
+            <input type="text" name="username" id="username" />
+          </div>
+
+          <div class="text-group">
+            <button name="register" id="register-btn" class="login-button">Register</button>
+          </div>
+        </form>
+
+        <div class="text-group">
+          <p>Already Registered? <a href="./index.html">Login Her</a></p>
+        </div>
+      </div>
+
+    </div>
+
+    <script src="./dist/bundle.js"></script>
+    <script>
+      document.getElementById("register-btn").addEventListener("click", function (event) {
+        event.preventDefault();
+
+        let submitButton = document.getElementById('register-btn');
+        const firstname = document.getElementById('firstname');
+        const lastname = document.getElementById('lastname');
+        const othernames = document.getElementById('othernames');
+        const email = document.getElementById('email');
+        const username = document.getElementById('username');
+
+        if(firstname.value == "" || lastname.value == "" || othernames.value == "" || email.value == "" || email.value == "") {
+          alert('One or more fields are empty.');
+        } else {
+          submitButton.innerHTML = "Registering...";
+          submitButton.disabled = true;
+          const userDetails = { firstname, lastname, othernames, email, username }
+          const url = "https://sendit-hook.herokuapp.com/api/v1/auth/signup";
+
+          const options = {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded",
+            },
+            mode: 'cors',
+            body: JSON.stringify(userDetails)
+          };
+          fetch(url, options)
+            .then(data => {
+              console.log(data);
+              submitButton.innerHTML = "Register";
+              submitButton.disabled = false;
+            })
+            .catch((err) => {
+              console.log(err);
+              submitButton.innerHTML = "Register";
+              submitButton.disabled = false;
+            })
+        }
+
+      });
+    </script>
+  </body>
+</html>

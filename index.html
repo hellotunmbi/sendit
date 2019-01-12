@@ -5,13 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>SendIT Logistics</title>
+    <link rel="stylesheet" href="./css/normalize.css" />
     <link rel="stylesheet" href="./css/main.css" />
+    <script type="text/javascript" src="dist/bundle.js"></script>
   </head>
   <body>
-    <header>SendIT Logistics</header>
-    <main></main>
-    <footer>Powered by SendIT corp.</footer>
+    <div class="home-container">
 
-    <script src="./js/script.js"></script>
+      <div class="main">
+        <form class="main__login-form">
+          <div class="text-group">
+            <label for="username">Username</label>
+            <input type="text" name="username" />
+          </div>
+
+          <div class="text-group">
+            <label for="password">Password</label>
+            <input type="password" name="password" />
+          </div>
+
+          <div class="text-group">
+            <button name="login" class="login-button">Login</button>
+          </div>
+
+          <div class="text-group">
+            <p>New User? <a href="./register.html">Register Here</a></p>
+          </div>
+        </form>
+      </div>
+
+    </div>
+
   </body>
 </html>
